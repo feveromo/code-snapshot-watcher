@@ -33,22 +33,23 @@ def create_code_snapshot(changed_file=None, old_content='', new_content='', outp
     snapshot_content.append(f"File: {rel_path}\n")
     snapshot_content.append(f"{'='*80}\n")
     
-    # Generate diff for all files
+    # Generate diff for changed lines only
     old_lines = old_content.splitlines()
     new_lines = new_content.splitlines()
-    diff = list(difflib.unified_diff(old_lines, new_lines, lineterm=''))
+    diff = list(difflib.unified_diff(old_lines, new_lines, n=2, lineterm=''))  # n=2 for 2 lines of context
     
     if diff:
         snapshot_content.append("\nChanges:\n")
+        in_hunk = False
         for line in diff[2:]:  # Skip the first two lines of unified diff
-            if line.startswith('+'):
-                snapshot_content.append(f"{line}")  # Already has + prefix
-            elif line.startswith('-'):
-                snapshot_content.append(f"{line}")  # Already has - prefix
-            elif line.startswith('@@'):
+            if line.startswith('@@'):
+                in_hunk = True
                 snapshot_content.append(f"\n{line}\n")  # Section header
-            else:
-                snapshot_content.append(f" {line[1:]}")  # Remove the space prefix
+            elif in_hunk:
+                if line.startswith('+') or line.startswith('-'):
+                    snapshot_content.append(line)  # Changed lines
+                elif line.startswith(' '):
+                    snapshot_content.append(f" {line[1:]}")  # Context lines
     
     # Append to the snapshot file instead of overwriting
     mode = 'a' if os.path.exists(output_file) else 'w'
