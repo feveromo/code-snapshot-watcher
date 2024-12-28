@@ -49,11 +49,63 @@ your-project/
 
 ## ⚙️ Configuration
 
-### Python Path
-Modify `.vscode/settings.json` to set your Python interpreter:
+### IDE Settings
+The `.vscode/settings.json` file contains IDE-specific settings. You'll need to modify this based on your system:
+
+1. **Python Interpreter Path**: Set the path to your Python installation:
 ```json
 {
-    "python.defaultInterpreterPath": "path/to/your/python"
+    "python.defaultInterpreterPath": "PYTHON_PATH"
+}
+```
+Where `PYTHON_PATH` should be:
+- Windows: `"C:\\Users\\YourUsername\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"`
+- macOS: `"/usr/local/bin/python3"` or `"/opt/homebrew/bin/python3"`
+- Linux: `"/usr/bin/python3"`
+
+2. **Terminal Settings**: The default configuration uses Windows Command Prompt. For other systems:
+
+macOS/Linux:
+```json
+{
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "/bin/bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "bash"
+}
+```
+
+or for macOS:
+```json
+{
+    "terminal.integrated.profiles.osx": {
+        "bash": {
+            "path": "/bin/bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.osx": "bash"
+}
+```
+
+### Task Configuration
+The `.vscode/tasks.json` file controls how the watcher starts. The default configuration works across systems, but you can customize the Python path if needed:
+
+```json
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start Code Snapshot Watcher",
+            "type": "shell",
+            "command": "${config:python.defaultInterpreterPath}",
+            "args": ["utils/file_watcher.py"],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
 }
 ```
 

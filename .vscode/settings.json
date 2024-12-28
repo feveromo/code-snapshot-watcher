@@ -1,11 +1,18 @@
 {
-    "python.defaultInterpreterPath": "C:\\Users\\cmd\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
-    "python.terminal.activateEnvironment": true,
-    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    // Path to your Python interpreter. Examples:
+    // Windows: "C:\\Users\\YourUsername\\AppData\\Local\\Programs\\Python\\Python311\\python.exe"
+    // macOS/Linux: "/usr/bin/python3" or "/usr/local/bin/python3"
+    "python.defaultInterpreterPath": "python",
+
+    // Basic type checking for better code quality
+    "python.analysis.typeCheckingMode": "basic",
+
+    // Terminal settings for different OS
     "terminal.integrated.profiles.windows": {
         "Command Prompt": {
             "path": "cmd.exe",
             "args": []
         }
-    }
+    },
+    "terminal.integrated.defaultProfile.windows": "Command Prompt"
 } 
