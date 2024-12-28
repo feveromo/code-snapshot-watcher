@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Start File Watcher",
+            "label": "Start PhantomDiff",
             "type": "shell",
             "command": "python",
             "args": ["${workspaceFolder}/utils/file_watcher.py"],

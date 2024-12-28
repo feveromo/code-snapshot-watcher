@@ -1,4 +1,4 @@
-# Code Snapshot Watcher 📸
+# PhantomDiff 👻
 
 A lightweight, automated tool that creates intelligent diffs of your code changes in real-time. Perfect for:
 - Sharing code context with AI assistants (like GitHub Copilot, ChatGPT)
@@ -19,13 +19,13 @@ A lightweight, automated tool that creates intelligent diffs of your code change
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/feveromo/code-snapshot-watcher.git
+git clone https://github.com/feveromo/phantomdiff.git
 ```
 
 2. Copy the required files to your project:
 ```bash
 cd your-project
-cp -r code-snapshot-watcher/{.vscode,utils,requirements.txt} .
+cp -r phantomdiff/{.vscode,utils,requirements.txt} .
 ```
 
 3. Install dependencies:
