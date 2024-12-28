@@ -76,6 +76,7 @@ def create_code_snapshot(changed_file=None, old_content='', new_content='', outp
     mode = 'a' if os.path.exists(output_file) else 'w'
     with open(output_file, mode, encoding='utf-8') as f:
         f.write('\n'.join(snapshot_content))
+        f.write('\n\n')  # Add extra newline between changes
     
     # Print colored output to terminal
     print('\n'.join(colored_content))
