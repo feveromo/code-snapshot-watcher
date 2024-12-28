@@ -3,6 +3,7 @@ from pathlib import Path
 from pathspec import PathSpec
 from pathspec.patterns.gitwildmatch import GitWildMatchPattern
 import difflib
+from datetime import datetime
 
 # ANSI color codes
 class Colors:
@@ -38,7 +39,9 @@ def create_code_snapshot(changed_file=None, old_content='', new_content='', outp
     if changed_file.suffix.lower() in {'.exe', '.dll', '.pyc', '.pyo'}:
         return
         
-    header = f"\n{'='*80}\nFile: {rel_path}\n{'='*80}\n"
+    # Add timestamp to header
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    header = f"\n{'='*80}\nFile: {rel_path}\nTimestamp: {timestamp}\n{'='*80}\n"
     snapshot_content.append(header)
     colored_content.append(header)
     
