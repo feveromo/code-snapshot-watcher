@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start File Watcher",
+            "type": "shell",
+            "command": "python",
+            "args": ["${workspaceFolder}/utils/file_watcher.py"],
+            "isBackground": true,
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+} 
